@@ -1,0 +1,16 @@
+[Unit]
+Description=A python script for send report infromation from Greenbone to the Mattermost
+After=syslog.target network.target multi-user.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/greenbone
+ExecStart=/bin/bash -c 'cd /root/greenbone/ && python3 mm-report.py'
+
+User=root
+
+Restart=on-failure
+RestartSec=120
+
+[Install]
+WantedBy=multi-user.target
